@@ -16,7 +16,7 @@ namespace Demo.Framework.Action
 
         public void FillOutDefaultInformation()
         {
-            _driver.FindElement(_checkoutInformationPage.EmailAddress).SendKeys("semrayozturk@gmail.com");
+            _driver.FindElement(_checkoutInformationPage.EmailAddress).SendKeys("semrayo2020@gmail.com");
             _driver.FindElement(_checkoutInformationPage.FirstName).SendKeys("Semra");
             _driver.FindElement(_checkoutInformationPage.LastName).SendKeys("Yilmaz");
             _driver.FindElement(_checkoutInformationPage.PhoneNumber).SendKeys("1231232211");

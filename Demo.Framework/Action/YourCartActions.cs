@@ -29,7 +29,7 @@ namespace Demo.Framework.Action
             var element = _waitUtils.WaitUntilElementIsVisible(_driver, _cartPage.SecureCheckout);
             _interactionUtils.DoubleClick(_driver, element);
             Thread.Sleep(3000);
-            _interactionUtils.DoubleClick(_driver, element);
+            
         }
     }
 }
