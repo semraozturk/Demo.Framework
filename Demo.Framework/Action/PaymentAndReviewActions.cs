@@ -16,7 +16,7 @@ namespace Demo.Framework.Action
         {
             _driver.FindElement(_paymentAndReview.CardNumber).SendKeys("4111111111111111");
             _driver.FindElement(_paymentAndReview.ExpiryDate).SendKeys("02");
-            _driver.FindElement(_paymentAndReview.ExpiryDate).SendKeys("2020");
+            _driver.FindElement(_paymentAndReview.ExpiryDate).SendKeys("22"); //does not accept 4 digit expiration year
             _driver.FindElement(_paymentAndReview.CVV).SendKeys("123");
         }
 

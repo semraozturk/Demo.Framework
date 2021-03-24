@@ -23,34 +23,38 @@ namespace Demo.Framework.Test
             var shippingActions = new ShippingActions(_webDriver);
             var paymentActions = new PaymentAndReviewActions(_webDriver);
             var confirmationActions = new ConfirmationActions(_webDriver);
+            var pathToTheScreenshot = _screenshotUtils.GetPathForScreenshot();
+            var pathToTheScreenshot1 = _screenshotUtils.GetPathForScreenshot();
 
             homePageActions.NavigateToHomePage();
             homePageActions.SearchForAnItem("fluke");
             searchResultsActions.SelectTheSecondItem();
             itemDetailsActions.AddToCart();
-            //take a screenshot of the addtocart popup
+            itemDetailsActions.ViewCart(pathToTheScreenshot);
+            _ = extentTest.Log(AventStack.ExtentReports.Status.Info, "Modal screenshot captured").
+               AddScreenCaptureFromPath(pathToTheScreenshot);
 
-            itemDetailsActions.ViewCart();
             cartActions.EnterQuantity("2");
             cartActions.Checkout();
-
             checkoutInfoActions.FillOutDefaultInformation();
             checkoutInfoActions.ContinueToShippingMethod();
-
             shippingActions.SelectThreeDayShipping();
             shippingActions.AddSignatureRequired();
             shippingActions.ContinueToPaymentMethod();
-
             paymentActions.EnterPaymentInformation();
             paymentActions.SubmitOrder();
 
             var confirmationNumber = confirmationActions.GetOrderNumber();
-            var pathToTheScreenshot = _screenshotUtils.GetPathForScreenshot();
-            _screenshotUtils.TakeAScreenshot(_webDriver, pathToTheScreenshot);
+            _screenshotUtils.TakeAScreenshot(_webDriver, pathToTheScreenshot1);
+           
             Assert.That(confirmationNumber, Is.Not.Null);
             _ = extentTest.Log(AventStack.ExtentReports.Status.Info, $"Order Number: {confirmationNumber}").
-                AddScreenCaptureFromPath(pathToTheScreenshot);
+                AddScreenCaptureFromPath(pathToTheScreenshot1);
             _ = extentTest.Pass("Successfully checked out an item");
-        }        
+
+        }  
+        
+
+
     }
 }
